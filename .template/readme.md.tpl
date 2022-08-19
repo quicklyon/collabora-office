@@ -45,40 +45,11 @@ docker pull easysoft/{{APP_DOCKER_IMAGE_NAME}}:latest
 docker pull easysoft/{{APP_DOCKER_IMAGE_NAME}}:[TAG]
 ```
 
-## 四、持久化数据
+##  四、运行
 
-如果你删除容器，所有的数据都将被删除，下次运行镜像时会重新初始化数据。为了避免数据丢失，你应该为容器提供一个挂在卷，这样可以将数据进行持久化存储。
+### 4.1 单机Docker-compose方式运行
 
-为了数据持久化，你应该挂载持久化目录：
-
-- /data 持久化数据
-
-如果挂载的目录为空，首次启动会自动初始化相关文件
-
-```bash
-$ docker run -it \
-    -v $PWD/data:/data \
-docker pull easysoft/{{APP_DOCKER_IMAGE_NAME}}:latest
-```
-
-或者修改 docker-compose.yml 文件，添加持久化目录配置
-
-```bash
-services:
-  {{APP_NAME}}:
-  ...
-    volumes:
-      - /path/to/persistence:/data
-  ...
-```
-
-## 五、环境变量
-
-{{APP_ENVS}}
-
-## 六、运行
-
-### 6.1 单机Docker-compose方式运行
+通过docker-compose会运行禅道、mysql和collabora-office三个服务，查看[禅道配置文档预览的说明文档](https://www.zentao.net/book/zentaobizhelp/267.html)。
 
 ```bash
 # 启动服务
@@ -91,7 +62,12 @@ make ps
 docker-compose logs -f {{app_name}}
 
 ```
+**说明:**
 
-{{MAKE_EXTRA_INFO}}
 - [VERSION]({{APP_DOCKERFILE_GIT_URL}}/blob/master/VERSION) 文件中详细的定义了Makefile可以操作的版本
 - [docker-compose.yml]({{APP_DOCKERFILE_GIT_URL}}/blob/master/docker-compose.yml)
+{{MAKE_EXTRA_INFO}}
+
+## 五、版本升级
+
+{{APP_UPDATE}}
