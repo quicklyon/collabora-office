@@ -1,0 +1,946 @@
+/* (C) Collabora Productivity 2020, All Rights Reserved */
+
+/*
+Any of these can be used either by omitting the prefix (it will default to --co)
+or by setting a different prefix by passing it and 2nd argument
+*/
+/**
+	* Use this mixin to DECLARE a set of CSS Custom Properties in the :root element.
+	* The variables in $css_variables will be properly prefixed.
+	* The use of this mixin is encoraged to keep a good scalability.
+	* @include set-cssvars((
+	*  primary-color: #504999,
+	*  secondary-color: #38257a,
+	* ));
+	* result in:
+	* root {
+	*  --co-primary-color: #504999;
+	*  --co-secondary-color: #38257a;
+	* }
+*/
+/**
+	* ASSIGN a css variable value with prefix
+	* .selector {
+	*   color: get-cssvar(primary-color);
+	* }
+	*
+	* result in:
+	* .selector {
+	*    color: var(--co-primary-color);
+	* }
+ */
+/**
+	* ASSIGN a css variable value with prefix
+*.btn-primary {
+*   height: cssvar(button-height);
+*   &--big {
+*     // rewrite height for btn-primary--big
+*     @include update-cssvar(button-height, 56px);
+*  }
+*}
+ */
+ :root {
+  --co-color-main-text: #212121;
+  --co-color-background-hover: #f5f5f5;
+  --co-color-background-dark: #ededed;
+  --co-body-bg: #ffffff;
+  --co-text-accent: #38257a;
+  /* --co-primary-element: #4c566a; */
+  --co-primary-element: green;
+  --co-primary-element-light: #706aab;
+  --co-primary-text: #ffffff;
+  --co-border-radius: 3px;
+  --co-color-border-dark: #b0b4bd;
+  --co-color-text-lighter: #636363;
+  --co-color-warning: #eca700;
+  --co-color-main-background-translucent: transparent;
+}
+
+/*icons*/
+.w2ui-icon.closemobile {
+  background: url("images/lc_closedocmobile_branding.svg") no-repeat center !important;
+}
+
+#toolbar-up .w2ui-toolbar {
+  padding-top: 5px !important;
+}
+
+/*avoid scroll indicators to be above other items*/
+/*
+Any of these can be used either by omitting the prefix (it will default to --co)
+or by setting a different prefix by passing it and 2nd argument
+*/
+/**
+	* Use this mixin to DECLARE a set of CSS Custom Properties in the :root element.
+	* The variables in $css_variables will be properly prefixed.
+	* The use of this mixin is encoraged to keep a good scalability.
+	* @include set-cssvars((
+	*  primary-color: #504999,
+	*  secondary-color: #38257a,
+	* ));
+	* result in:
+	* root {
+	*  --co-primary-color: #504999;
+	*  --co-secondary-color: #38257a;
+	* }
+*/
+/**
+	* ASSIGN a css variable value with prefix
+	* .selector {
+	*   color: get-cssvar(primary-color);
+	* }
+	*
+	* result in:
+	* .selector {
+	*    color: var(--co-primary-color);
+	* }
+ */
+/**
+	* ASSIGN a css variable value with prefix
+*.btn-primary {
+*   height: cssvar(button-height);
+*   &--big {
+*     // rewrite height for btn-primary--big
+*     @include update-cssvar(button-height, 56px);
+*  }
+*}
+ */
+:root {
+  --co-color-main-text: #212121;
+  --co-color-background-hover: #f5f5f5;
+  --co-color-background-dark: #ededed;
+  --co-body-bg: #ffffff;
+  --co-text-accent: #38257a;
+  --co-primary-element: #4c566a;
+  --co-primary-element-light: #706aab;
+  --co-primary-text: #ffffff;
+  --co-border-radius: 3px;
+  --co-color-border-dark: #b0b4bd;
+  --co-color-text-lighter: #636363;
+  --co-color-warning: #eca700;
+  --co-color-main-background-translucent: transparent;
+}
+
+#mobile-edit-button {
+  background-color: var(--co-primary-element) !important;
+}
+
+#Italic {
+  left: 20% !important;
+}
+
+#Underline {
+  left: 40% !important;
+}
+
+#Strikeout {
+  left: 60% !important;
+}
+
+#Shadowed {
+  left: 80% !important;
+}
+
+div#applystyle:not(.sidebar), .with-slide-sorter-above #fontnamecombobox, #TextPropertyPanel #fontnamecombobox:not(.sidebar) {
+  margin-top: 64px;
+}
+
+/* found on writer (mobilewizard: tab layout) and on calc/impress (mobilewizard: properties) */
+.unospan-fonteffects:not(.sidebar) {
+  width: 24px;
+  position: relative;
+}
+
+#mobile-wizard .ui-content #Bold,
+#mobile-wizard .ui-content #Italic,
+#mobile-wizard .ui-content #Underline,
+#mobile-wizard .ui-content #Shadowed,
+#mobile-wizard .ui-content #Strikeout {
+  margin-top: -180px !important;
+}
+
+#mobile-wizard .ui-tabs-content #Bold,
+#mobile-wizard .ui-tabs-content #Italic,
+#mobile-wizard .ui-tabs-content #Underline,
+#mobile-wizard .ui-tabs-content #Shadowed,
+#mobile-wizard .ui-tabs-content #Strikeout {
+  margin-top: -230px !important;
+}
+
+/*
+Any of these can be used either by omitting the prefix (it will default to --co)
+or by setting a different prefix by passing it and 2nd argument
+*/
+/**
+	* Use this mixin to DECLARE a set of CSS Custom Properties in the :root element.
+	* The variables in $css_variables will be properly prefixed.
+	* The use of this mixin is encoraged to keep a good scalability.
+	* @include set-cssvars((
+	*  primary-color: #504999,
+	*  secondary-color: #38257a,
+	* ));
+	* result in:
+	* root {
+	*  --co-primary-color: #504999;
+	*  --co-secondary-color: #38257a;
+	* }
+*/
+/**
+	* ASSIGN a css variable value with prefix
+	* .selector {
+	*   color: get-cssvar(primary-color);
+	* }
+	*
+	* result in:
+	* .selector {
+	*    color: var(--co-primary-color);
+	* }
+ */
+/**
+	* ASSIGN a css variable value with prefix
+*.btn-primary {
+*   height: cssvar(button-height);
+*   &--big {
+*     // rewrite height for btn-primary--big
+*     @include update-cssvar(button-height, 56px);
+*  }
+*}
+ */
+:root {
+  --co-color-main-text: #212121;
+  --co-color-background-hover: #f5f5f5;
+  --co-color-background-dark: #ededed;
+  --co-body-bg: #ffffff;
+  --co-text-accent: #38257a;
+  --co-primary-element: #c23f25;
+  --co-primary-element-light: #706aab;
+  --co-primary-text: #ffffff;
+  --co-border-radius: 3px;
+  --co-color-border-dark: #b0b4bd;
+  --co-color-text-lighter: #636363;
+  --co-color-warning: #eca700;
+  --co-color-main-background-translucent: transparent;
+}
+
+#mobile-wizard button,
+#mobile-wizard #FontworkSameLetterHeights {
+  color: var(--co-primary-text);
+  background-color: var(--co-primary-element);
+  border: 1px solid var(--co-primary-element);
+}
+
+#mobile-wizard-content * {
+  color: var(--co-color-main-text);
+}
+
+#mobile-wizard-titlebar {
+  color: var(--co-color-text-lighter);
+}
+
+.ui-tab.selected.mobile-wizard {
+  color: var(--co-primary-element);
+  border-bottom: 1px solid var(--co-primary-element);
+}
+
+.ui-tab.mobile-wizard {
+  color: var(--co-color-text-lighter);
+}
+
+div#mobile-wizard-content .spinfieldcontainer {
+  border: 1px solid var(--co-color-border-dark);
+  border-radius: var(--co-border-radius);
+}
+
+.spinfieldcontrols {
+  background-color: var(--co-color-background-dark);
+  border-left: 1px solid var(--co-color-border-dark);
+}
+
+.plus {
+  border-left: 1px solid var(--co-color-border-dark);
+  color: var(--co-color-text-lighter) !important;
+}
+
+.minus {
+  border-right: 1px solid var(--co-color-border-dark);
+  color: var(--co-color-text-lighter) !important;
+}
+
+.spinfieldunit {
+  color: var(--co-color-text-lighter) !important;
+}
+
+.ui-content.mobile-wizard:not(#FontworkSameLetterHeights) {
+  background-color: var(--co-body-bg) !important;
+}
+
+.colors-container-selected-basic-color {
+  box-shadow: 0 2px 3px -2px var(--co-primary-element);
+  border-radius: var(--co-border-radius);
+}
+
+.color-sample-small {
+  border-color: var(--co-body-bg);
+}
+
+.color-sample-big {
+  box-shadow: 0px 0px 0px 1px var(--co-color-background-dark), 1px 1px 0 3px var(--co-body-bg);
+}
+
+.ui-header.mobile-wizard {
+  border-color: var(--co-body-bg);
+  background-color: var(--co-body-bg);
+}
+
+.ui-header.mobile-wizard:hover {
+  background-color: var(--co-color-background-hover);
+}
+
+.menu-entry-icon {
+  background: var(--co-color-main-background-translucent);
+}
+
+#mobile-wizard-content #commands.selected {
+  border-color: var(--co-primary-element);
+}
+
+/* 全局设置 */
+:root {
+  /* --co-color-main-text: #333435; */
+  --co-color-background-hover: #f5f5f5;
+  --co-color-background-dark: #ededed;
+  /* --co-body-bg: #ffffff; */
+  /* --co-text-accent: #38257a; */
+  /* --co-primary-element: #c23f25; */
+  /* --co-primary-element-light: #706aab; */
+  /* --co-primary-text: #ffffff; */
+
+  --co-border-radius: 1px;
+  --co-color-border: #e1e1e1;
+  --co-color-border-dark: #b0b4bd;
+  --co-color-text-lighter: #272626;
+  --co-color-warning: #f59e0b;
+  --co-color-main-background-translucent: transparent;
+
+  --scrollbar-size: 8px;
+  --scrollbar-radius: 4px;
+
+  --loleaflet-font: "Microsoft Yahei UI","Microsoft Yahei", "Helvetica Neue", Helvetica, Tahoma, Arial, 'PingFang SC', 'Source Han Sans CN', 'Source Han Sans', 'Source Han Serif', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
+  --loleaflet-font: "Microsoft Yahei UI","Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
+  --gray-light-bg-color: #f3f2f1;
+}
+body {
+  font-size: 13px;
+  color: #333435;
+  -webkit-font-smoothing: antialiased;
+}
+.w2ui-overlay {
+  border-radius: 0;
+}
+.w2ui-overlay table.w2ui-drop-menu {
+  color: #333435;
+}
+.w2ui-reset table tr th, .w2ui-reset table tr td {
+  font-size: 12px;
+  font-family: var(--loleaflet-font);
+}
+.ui-widget, [data-title]:after {
+  font-size: inherit;
+}
+.lo-menu ul {
+  box-shadow: rgb(0 0 0 / 20%) 0px 4px 8px 0px;
+  border-color: rgba(0,0,0,.17);
+}
+.lo-menu ul a, .lo-menu ul a:hover, .lo-menu ul a:focus, .lo-menu ul a:active {
+  font-size: 13px;
+}
+.lo-menu a, .lo-menu a:hover, .lo-menu a:focus, .lo-menu a:active, .lo-menu a.highlighted {
+  padding: 8px 22px 8px 24px;
+}
+.lo-menu a:hover, .lo-menu a:focus, .lo-menu a:active, .lo-menu a.highlighted {
+  background-color: rgba(0,0,0,.1)!important;
+  color: inherit;
+}
+.lo-menu a.highlighted {
+  background-color: rgba(0,0,0,.075)!important;
+  color: inherit;
+}
+.lo-menu ul a:hover>span.sub-arrow,
+.lo-menu-item-checked:hover::before {
+  filter: none;
+}
+.lo-menu-item-checked::before {
+  top: 6px
+}
+.lo-menu a.separator {
+  padding: 0;
+  background-color: none!important;
+}
+.context-menu-list {
+  box-shadow: rgb(0 0 0 / 20%) 0px 4px 8px 0px;
+  border-color: rgba(0,0,0,.17);
+  font-size: 13px!important;
+}
+.context-menu-item {
+  padding: 8px 12px;
+}
+.context-menu-hover {
+  background-color: rgba(0,0,0,.1)!important;
+  color: inherit!important;
+}
+.context-menu-hover>span>a {
+  color: inherit!important;
+}
+.context-menu-separator {
+  padding: 0;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  height: var(--scrollbar-size);
+  width: var(--scrollbar-size);
+  transition: .4s;
+  transition-property: height, width;
+}
+::-webkit-scrollbar-button {
+  height: 0;
+  width: 0
+}
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+  display: block
+}
+::-webkit-scrollbar-button:vertical:start:increment,
+::-webkit-scrollbar-button:vertical:end:decrement {
+  display: none
+}
+::-webkit-scrollbar-track:vertical,
+::-webkit-scrollbar-track:horizontal,
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal,
+::-webkit-scrollbar-track:vertical,
+::-webkit-scrollbar-track:horizontal,
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal {
+  border-style: solid;
+  border-color: transparent
+}
+::-webkit-scrollbar-track:vertical::-webkit-scrollbar-track:horizontal {
+  background-clip: padding-box;
+  background-color: #fff;
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset -1px -1px 0 rgba(0, 0, 0, .07);
+  background-clip: padding-box;
+  background-color: rgba(0, 0, 0, .15);
+  border-radius: var(--scrollbar-radius);
+  min-height: 28px;
+}
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .25);
+  background-color: rgba(0, 0, 0, .4)
+}
+::-webkit-scrollbar-thumb:active {
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .35);
+  background-color: rgba(0, 0, 0, .5)
+}
+::-webkit-scrollbar-track:vertical,
+::-webkit-scrollbar-track:horizontal,
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal {
+  border-width: 0;
+}
+::-webkit-scrollbar-track:hover {
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, .05)
+}
+::-webkit-scrollbar-track:active {
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, .14), inset -1px -1px 0 rgba(0, 0, 0, .07);
+  background-color: rgba(0, 0, 0, .05)
+}
+
+/* 顶部菜单 */
+.main-nav.readonly {
+  display: none!important; /* 隐藏顶部菜单 */
+}
+.ui-tab.notebookbar {
+  font-size: 13px;
+}
+.hasnotebookbar .notebookbar-shortcuts-bar #Menubar>li>a {
+  width: 24px;
+}
+#document-header {
+  display: none;
+}
+.main-nav.hasnotebookbar:not(.readonly) #document-titlebar {
+  /* display: none; */
+  top: -12px;
+}
+.readonly #document-titlebar {
+  margin-right: 0;
+  top: -1px;
+}
+.main-nav .sm-nowrap {
+  color: var(--co-color-main-text);
+}
+#document-name-input {
+  color: rgba(255,255,255,.6)!important;
+  font-size: 12px!important;
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.1);
+  text-align: center;
+  padding: 4px;
+}
+#document-name-input:hover {
+  color: rgba(255,255,255,1)!important;
+  background-color: rgba(0,0,0,.2);
+}
+.hasnotebookbar #MasterSlidesPanel img,
+.hasnotebookbar #CustomAnimation img,
+.hasnotebookbar #SlideChangeWindow img,
+.hasnotebookbar #Sidebar img, .hasnotebookbar #ModifyPage img {
+  width: 24px !important;
+  height: 24px !important;
+  display: block;
+  padding: 0;
+}
+#table-optionstoolboxdown {
+  position: relative;
+  top: 4px;
+  right: 4px;
+}
+.main-nav.hasnotebookbar .ui-tab.notebookbar {
+  transition: .2s box-shadow!important;
+}
+.main-nav.hasnotebookbar .ui-tab.selected.notebookbar {
+  color: var(--co-primary-element)!important;
+  text-shadow: none!important;
+  font-weight: bold!important;
+}
+.main-nav.hasnotebookbar .ui-tab.notebookbar:hover {
+  box-shadow: inset 0 -2px var(--co-primary-element)!important;
+}
+
+/* 深色顶栏 */
+.main-nav,
+.main-nav.hasnotebookbar:not(.readonly) {
+  background-color: var(--co-primary-element)!important;
+  color: #fff;
+}
+.ui-tab.notebookbar,
+.main-nav.hasnotebookbar .ui-tab.notebookbar:hover {
+  color: inherit!important;
+}
+.main-nav.hasnotebookbar .ui-tab.notebookbar:hover {
+  box-shadow: inset 0 -2px rgba(255,255,255,.85)!important;
+}
+.main-nav.hasnotebookbar .ui-tab.notebookbar.selected:hover {
+  color: var(--co-primary-element)!important;
+}
+.main-nav .hasnotebookbar .ui-content.unotoolbutton.selected:hover,
+.main-nav .unotoolbutton.notebookbar:hover,
+.main-nav .hasnotebookbar .ui-content.unotoolbutton.selected:not(.has-label):not(.inline):hover {
+  border-color: rgba(255,255,255,.5)!important;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.5)!important;
+  background-color: rgba(255,255,255,.1);
+}
+.main-nav .unotoolbutton.notebookbar .unobutton {
+  transform: scale(1)!important;
+}
+.main-nav #Hamburgerimg {
+  filter: brightness(100);
+}
+.main-nav #Redo img,
+.main-nav #Undo img {
+  filter: brightness(0) invert(1);
+}
+.main-nav #Redo.disabled img,
+.main-nav #Undo.disabled img {
+  opacity: .5;
+}
+#main-menu {
+  padding-left: 2px;
+}
+#main-menu >li, #main-menu>li>.disabled {
+  background: transparent;
+}
+#main-menu>li>a, #main-menu>li>a.has-submenu {
+  border: none!important;
+  color: inherit;
+}
+#menu-downloadas-pdf a {
+  background-position-x: 96%;
+}
+
+/* 工具栏 */
+#toolbar-wrapper {
+  border-bottom: none;
+  box-shadow: rgb(0 0 0 / 13%) 0px 1.6px 3.6px 0px, rgb(0 0 0 / 11%) 0px 0.3px 0.9px 0px;
+}
+.hasnotebookbar .ui-content.unotoolbutton.selected:hover, .unotoolbutton.notebookbar:hover, .hasnotebookbar .ui-content.unotoolbutton.selected:not(.has-label):not(.inline):hover {
+  border-color: #8d8e8e;
+  box-shadow: 0 0 0 1px #8d8e8e !important;
+  background-color: rgba(0,0,0,.05);
+}
+.unotoolbutton.notebookbar .unoarrow {
+  position: relative;
+  top: 3px;
+  margin-left: 1px;
+  margin-right: 2px;
+}
+.select2-container--default .select2-selection--single, #tb_actionbar_item_LanguageStatus .w2ui-button, #tb_actionbar_item_StateTableCellMenu .w2ui-button, #tb_actionbar_item_zoom .w2ui-button, .sidebar.jsdialog.ui-listbox {
+  border-color: #c9c8c6;
+}
+.hasnotebookbar .ui-content.unotoolbutton.selected:not(.has-label):not(.inline) {
+  background-color: #fff!important;
+}
+.hasnotebookbar .unotoolbutton.notebookbar:not(.has-label):not(.inline) .unobutton.selected {
+  filter: none;
+}
+#fontnamecombobox {
+  line-height: inherit;
+}
+.select2-container--default .select2-results__option[aria-selected=true] {
+  background-color: rgba(0,0,0,.1);
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: rgba(0,0,0,.05);
+  color: inherit;
+}
+.select2-dropdown {
+  border-radius: 2px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 8px 0px;
+}
+.select2-results__option {
+  padding: 8px 10px;
+}
+.unotoolbutton.notebookbar .unobutton,
+#clearFormatting.notebookbar div img, #FormatPaintbrush.notebookbar div img,
+.unotoolbutton.notebookbar.disabled img, .mobile-wizard-widebutton.disabled img {
+  transform: scale(0.8333333333)!important;
+}
+.hasnotebookbar #HyperlinkDialog img {
+  transform: scale(1)!important;
+}
+#Copy.notebookbar, #clearFormatting.notebookbar, #FormatPaintbrush.notebookbar {
+  margin-top: 2px;
+}
+#BackColor .w2ui-tb-caption>div, #FontColor .w2ui-tb-caption>div, #BackgroundColor .w2ui-tb-caption>div, #FrameLineColor div, #Color div {
+  border-radius: 0!important;
+}
+.unotoolbutton.notebookbar .selected-color {
+  width: 20px;
+  height: 3px;
+  left: 1px;
+}
+#table-Insert #HeaderAndFooter.notebookbar {
+  min-width: 90px;
+}
+#tb_actionbar_item_userlist table.w2ui-button .w2ui-tb-image {
+  opacity: .5;
+  transform: scale(.7);
+}
+#table-ExtTop4 .unotoolbutton.notebookbar .unobutton {
+  transform: scale(0.6666666667)!important;
+}
+.select2-selection__rendered {
+  font-weight: normal;
+}
+#table-SectionBottom102 .unotoolbutton.notebookbar .unobutton,
+#table-GroupB11 .unotoolbutton.notebookbar .unobutton,
+#clearFormatting.notebookbar div img {
+  transform: scale(0.6666666667)!important;
+}
+#NumberFormatDecimal, #NumberFormatPercent {
+  width: 24px;
+}
+#XLineColor img,
+#FillColor img {
+  position: relative;
+  top: -2px;
+}
+.w2ui-scroll-left, .w2ui-scroll-right {
+  top: 1px;
+  opacity: 0;
+  transition: opacity .3s;
+  background: var(--co-color-background-dark) url(images/scroll-double-dark.svg) center center no-repeat;
+  background-size: 75%;
+}
+.w2ui-scroll-left:hover, .w2ui-scroll-right:hover {
+  background-size: 75%;
+  background-color: var(--co-primary-element);
+  background-image: url(images/scroll-double-white.svg);
+}
+#toolbar-up:hover .w2ui-scroll-left,
+#toolbar-up:hover .w2ui-scroll-right {
+  opacity: 1;
+}
+.hasnotebookbar #Sidebar #Sidebarimg.selected, .hasnotebookbar #ModifyPage #ModifyPageimg.selected, .hasnotebookbar #SlideChangeWindow #SlideChangeWindowimg.selected, .hasnotebookbar #CustomAnimation #CustomAnimationimg.selected, .hasnotebookbar #MasterSlidesPanel #MasterSlidesPanelimg.selected {
+  background-position: center!important;
+}
+/* 表格工具栏 */
+#spreadsheet-toolbar {
+  border-top: none;
+}
+#spreadsheet-toolbar .w2ui-icon {
+  transform: scale(.9);
+  display: block;
+}
+#spreadsheet-toolbar .w2ui-icon.lastrecord {
+  transform: scale(.9) rotateY(180deg);
+}
+#spreadsheet-toolbar .w2ui-scroll-wrapper > table {
+  border-top: 1px solid var(--co-color-border);
+}
+#formulabar {
+  border-top: 1px solid var(--co-color-border);
+}
+#addressInput {
+  border: 1px solid #c9c8c6;
+  height: 22px;
+}
+#addressInput:focus {
+  border: 1px solid var(--co-primary-element);
+  outline: none;
+}
+.leaflet-canvas-container {
+  left: -1px;
+  top: -1px;
+}
+#tb_formulabar_item_functiondialog table.w2ui-button .w2ui-tb-image {
+  transform: scale(.7);
+}
+#tb_formulabar_item_formula {
+  top: -1px;
+  position: relative;
+}
+.leaflet-cursor {
+  width: 1px;
+  margin-left: 1px;
+  position: relative;
+  top: 1px;
+}
+/* 文档工具栏 */
+.readonly .leaflet-top .leaflet-control { /* 隐藏顶部标尺 */
+  display: none;
+}
+#stylesview {
+  box-shadow: none;
+  border-color: #c9c8c6;
+}
+#stylesview .ui-iconview-entry {
+  border: 3px solid transparent!important;
+  box-shadow: none!important;
+}
+#stylesview .ui-iconview-entry:hover {
+  border-color: var(--co-primary-element-light)!important;
+}
+#stylesview .ui-iconview-entry.selected {
+  border-color: var(--co-primary-element-light)!important;
+  outline: 1px solid var(--co-primary-element)!important;
+  outline-offset: -4px;
+}
+
+/* 表格底栏 */
+.spreadsheet-tabs-container {
+  height: 30px!important;
+  top: -1px;
+}
+.spreadsheet-tab {
+  margin-top: 0!important;
+  border-top: none!important;
+  border-radius: 0;
+  border-color: transparent!important;
+  box-shadow: none;
+  background: transparent!important;
+  position: relative;
+  padding: 6px 9px !important;
+  opacity: 0.9;
+}
+.spreadsheet-tab::after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 1px;
+  background-color: #fff;
+  transition: .3s all;
+}
+.spreadsheet-tab:hover::after  {
+  background-color: var(--co-primary-element);
+  height: 1px;
+}
+.spreadsheet-tab.spreadsheet-tab-selected {
+  color: inherit!important;
+  background-color: #fff!important;
+  border-color: var(--co-color-border)!important;
+  box-shadow: none;
+  border-top-color: #fff;
+  opacity: 1;
+}
+.spreadsheet-tab.spreadsheet-tab-selected::after {
+  background-color: var(--co-primary-element);
+  height: 3px;
+  left: 0;
+  right: 0;
+}
+#tb_spreadsheet-toolbar_item_insertsheet {
+  padding-top: 0;
+}
+#tb_actionbar_item_StateTableCellMenu .w2ui-tb-down {
+  padding: 7px 4px;
+}
+
+/* 左侧幻灯片目录 */
+#presentation-controls-wrapper {
+  background-color: #f8f9fa!important;
+  border-top: none!important;
+}
+#first-drop-site {
+  height: 2px!important;
+}
+#slide-sorter {
+  border-right: 1px solid var(--co-color-border);
+}
+#slide-sorter .preview-frame {
+  border: none!important;
+}
+#slide-sorter .preview-img {
+  /* border: 1px solid rgba(0,0,0,.1); */
+  border: 3px solid transparent;
+  border-radius: 0;
+  margin-left: 15px;
+  margin-right: 15px;
+  min-width: 151px;
+  max-width: 155px;
+  outline: 1px solid #d0d3d6;
+  outline-offset: -4px;
+  transition: border .2s, outline .2s;
+}
+#slide-sorter .preview-img:hover {
+  border-color: #8d8e8e;
+}
+#slide-sorter .preview-img-currentpart,
+#mobile-wizard-header .preview-img-currentpart,
+#slide-sorter .preview-frame[style^="border: 2px"] .preview-img {
+  border-color: #ee7256;
+  outline-color: transparent;
+}
+#slide-sorter .preview-img-currentpart:hover,
+#slide-sorter .preview-frame[style^="border: 2px"] .preview-img:hover {
+  outline-color: #ee7256;
+  border-color: #ee7256;
+}
+#slide-sorter {
+  background-color: #f8f9fa;
+}
+#slide-sorter > .preview-frame:last-child {
+  margin-bottom: 32px;
+}
+#presentation-toolbar {
+  width: auto;
+  right: 15px;
+  left: 0;
+  background-color: #f8f9fa;
+}
+.preview-frame {
+  margin: 10px 0;
+}
+
+/* 文档区域 */
+#document-container {
+  border-left: 1px solid var(--co-color-border)!important;
+  background: none;
+}
+.presentation-doctype #map, .drawing-doctype #map {
+  box-shadow: none;
+}
+
+/* 底部状态栏 */
+#toolbar-down {
+  height: 23px;
+  border-top: 1px solid #e1e1e1;
+  background-color: #ffffff;
+  font-size: 12px;
+  padding: 0;
+}
+#toolbar-down * {
+  max-height: 22px!important;
+}
+#toolbar-down .w2ui-button {
+  border: none
+}
+#toolbar-down table.w2ui-button.checked {
+  border: none;
+  background: rgba(0,0,0, .1);
+}
+#tb_actionbar_item_search,
+#tb_actionbar_item_searchprev,
+#tb_actionbar_item_searchnext,
+#tb_actionbar_item_cancelsearch,
+#tb_actionbar_item_break1 {
+  display: none;
+}
+#PageStatus {
+  line-height: 20px;
+  padding: 1px 10px!important;
+}
+.w2ui-toolbar table.w2ui-button .w2ui-tb-image {
+  margin: 0!important;
+  transform: scale(.8);
+}
+.w2ui-toolbar table.w2ui-button .w2ui-tb-caption {
+  line-height: 22px;
+}
+.w2ui-toolbar table.w2ui-button .w2ui-tb-down>div {
+  margin-top: 1px;
+}
+.w2ui-toolbar table.w2ui-button.over {
+  border-radius: 2px;
+}
+#tb_actionbar_item_zoom .w2ui-tb-caption {
+  padding: 0!important;
+}
+#tb_actionbar_item_zoom table.w2ui-button .w2ui-tb-down>div {
+  margin-top: 2px;
+}
+#tb_actionbar_item_LanguageStatus .w2ui-tb-caption, #tb_actionbar_item_zoom .w2ui-tb-caption {
+  font-weight: normal;
+}
+#tb_actionbar_item_LanguageStatus .w2ui-tb-down > div {
+  margin-top: 2px;
+}
+#PermissionMode.status-readonly-mode {
+  color: var(--co-color-warning);
+  background: none;
+  transform: scale(.9);
+}
+
+/* 文档已暂停 */
+.vex-open .loleaflet-user-idle {
+  color: inherit!important;
+}
+.vex.vex-theme-plain {
+  background-color: rgba(0, 0, 0, .2);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vex.vex-theme-plain .vex-content {
+  width: 600px;
+  color: var(--co-primary-element)!important;
+  background-color: rgba(255,255,255,.75)!important;
+  border-radius: 2px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 4px 8px 0px;
+  border-color: rgba(255,255,255,.75);
+  font-weight: normal;
+  padding: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 204px;
+  backdrop-filter: blur(10px);
+}

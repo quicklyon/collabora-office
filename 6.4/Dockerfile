@@ -1,4 +1,4 @@
-FROM collabora/code:22.05.5.3.1
+FROM collabora/code:6.4.14.3
 
 LABEL maintainer "zhouyueqiu zhouyueqiu@easycorp.ltd"
 
@@ -10,5 +10,5 @@ ENV OS_ARCH="amd64" \
 ENV TZ=Asia/Shanghai
 
 # Copy collabora-office config files
-COPY --chown=cool rootfs /
+COPY --chown=lool 6.4/rootfs /
 

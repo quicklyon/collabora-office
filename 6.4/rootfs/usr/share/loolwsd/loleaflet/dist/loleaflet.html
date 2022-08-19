@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://leafletjs.com/examples/quick-start-example.html -->
+<html style="height:100%"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Online Editor</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+
+<script>
+
+
+
+
+
+
+
+// Start listening for Host_PostmessageReady message and save the
+  // result for future
+  window.WOPIpostMessageReady = false;
+  var PostMessageReadyListener = function(e) {
+    if (!(e && e.data))
+        return;
+    var msg = JSON.parse(e.data);
+    if (msg.MessageId === 'Host_PostmessageReady') {
+      window.WOPIPostmessageReady = true;
+      window.removeEventListener('message', PostMessageReadyListener, false);
+    }
+  };
+  window.addEventListener('message', PostMessageReadyListener, false);
+
+
+   window.ThisIsAMobileApp = false;
+
+   window.ThisIsTheiOSApp = false;
+
+   window.ThisIsTheGtkApp = false;
+
+   window.ThisIsTheAndroidApp = false;
+
+
+if (window.ThisIsTheiOSApp) {
+  window.addEventListener('keydown', function(e) {
+    if (e.metaKey) {
+      e.preventDefault();
+    }
+    if (window.MagicKeyDownHandler)
+      window.MagicKeyDownHandler(e);
+  });
+  window.addEventListener('keyup', function(e) {
+    if (e.metaKey) {
+      e.preventDefault();
+    }
+    if (window.MagicKeyUpHandler)
+      window.MagicKeyUpHandler(e);
+  });
+}
+
+var Base64ToArrayBuffer = function(base64Str) {
+  var binStr = atob(base64Str);
+  var ab = new ArrayBuffer(binStr.length);
+  var bv = new Uint8Array(ab);
+  for (var i = 0, l = binStr.length; i < l; i++) {
+    bv[i] = binStr.charCodeAt(i);
+  }
+  return ab;
+}
+
+  window.bundlejsLoaded = false;
+  window.fullyLoadedAndReady = false;
+  window.addEventListener('load', function() {
+    window.fullyLoadedAndReady = true;
+  }, false);
+
+window.isLocalStorageAllowed = (function() {
+  var str = 'localstorage_test';
+  try {
+    localStorage.setItem(str, str);
+    localStorage.removeItem(str);
+    return true;
+  } catch(e) {
+    return false;
+  }
+})();
+</script>
+
+<!-- Dynamically load the bundle.css -->
+<script>
+var link = document.createElement('link');
+link.setAttribute("rel", "stylesheet");
+link.setAttribute("type", "text/css");
+link.setAttribute("href", '%SERVICE_ROOT%/loleaflet/%VERSION%/bundle.css');
+document.getElementsByTagName("head")[0].appendChild(link);
+</script>
+
+<!--%BRANDING_CSS%--> <!-- add your logo here -->
+
+
+
+<link rel="localizations" href="%SERVICE_ROOT%/loleaflet/%VERSION%/l10n/uno-localizations-override.json" type="application/vnd.oftn.l10n+json"/>
+   <link rel="localizations" href="%SERVICE_ROOT%/loleaflet/%VERSION%/l10n/localizations.json" type="application/vnd.oftn.l10n+json"/>
+   <link rel="localizations" href="%SERVICE_ROOT%/loleaflet/%VERSION%/l10n/locore-localizations.json" type="application/vnd.oftn.l10n+json"/>
+   <link rel="localizations" href="%SERVICE_ROOT%/loleaflet/%VERSION%/l10n/help-localizations.json" type="application/vnd.oftn.l10n+json"/>
+   <link rel="localizations" href="%SERVICE_ROOT%/loleaflet/%VERSION%/l10n/uno-localizations.json" type="application/vnd.oftn.l10n+json"/>
+</head>
+
+  <body style="user-select: none;height:100%;display:flex;flex-direction:column">
+    <!--The "controls" div holds map controls such as the Zoom button and
+        it's separated from the map in order to have the controls on the top
+        of the page all the time.
+
+        The "document-container" div is the actual display of the document, is
+        what the user sees and it should be no larger than the screen size.
+
+        The "map" div is the actual document and it has the document's size
+        and width, this being inside the smaller "document-container" will
+        cause the content to overflow, creating scrollbars -->
+
+     <nav class="main-nav" role="navigation">
+       <!-- Mobile menu toggle button (hamburger/x icon) -->
+       <input id="main-menu-state" type="checkbox" style="display: none"/>
+       <ul id="main-menu" class="sm sm-simple lo-menu readonly"></ul>
+       <div id="document-titlebar">
+         <div class="document-title">
+           <!-- visuallyhidden: hide it visually but keep it available to screen reader and other assistive technology -->
+           <label class="visuallyhidden" for="document-name-input" aria-hidden="false">Document name</label>
+           <input id="document-name-input" type="text" disabled="true" style="display: none"/>
+         </div>
+       </div>
+     </nav>
+
+     <table id="toolbar-wrapper">
+     <tr>
+       <td id="toolbar-logo"></td>
+       <td id="toolbar-up"></td>
+       <td id="toolbar-hamburger">
+         <label class="main-menu-btn" for="main-menu-state">
+           <span class="main-menu-btn-icon" id="main-menu-btn-icon"></span>
+         </label>
+       </td>
+     </tr>
+     <tr>
+       <td colspan="3" id="formulabar" style="display: none"></td>
+     </tr>
+    </table>
+
+    <!--%DOCUMENT_SIGNING_DIV%-->
+    <script>
+      window.documentSigningURL = '%DOCUMENT_SIGNING_URL%';
+    </script>
+
+    <input id="insertgraphic" type="file" accept="image/*" style="position: fixed; top: -100em">
+    <input id="selectbackground" type="file" accept="image/*" style="position: fixed; top: -100em">
+
+    <div id="closebuttonwrapper">
+      <div class="closebuttonimage" id="closebutton"></div>
+    </div>
+
+    <div id="main-document-content" style="display:flex; flex-direction: row; flex: 1; margin: 0; padding: 0; min-height: 0">
+      <div id="presentation-controls-wrapper" class="readonly">
+        <div id="slide-sorter"></div>
+        <div id="presentation-toolbar" style="display: none"></div>
+      </div>
+      <div id="document-container" class="readonly">
+        <div id="map"></div>
+      </div>
+      <div id="sidebar-dock-wrapper" style="display: inline-block;">
+        <div id="sidebar-panel"></div>
+      </div>
+    </div>
+
+    <div id="spreadsheet-toolbar" style="display: none"></div>
+
+    <div id="mobile-edit-button" style="display: none">
+      <div id="mobile-edit-button-image"></div>
+    </div>
+
+    <div id="toolbar-down" style="display: none"></div>
+    <div id="toolbar-search" style="display: none"></div>
+    <div id="mobile-wizard" style="display: none">
+      <div id="mobile-wizard-tabs"></div>
+      <table id="mobile-wizard-titlebar" width="100%">
+        <tr>
+          <td id="mobile-wizard-back"></td>
+          <td id="mobile-wizard-title" class="ui-widget"></td>
+        </tr>
+      </table>
+      <div id="mobile-wizard-content"></div>
+    </div>
+
+    <!-- Remove if you don't want the About dialog -->
+    <div id="about-dialog" style="display:none; text-align: center; user-select: text">
+      <h1 id="product-name">Collabora Online</h1>
+      <div id="product-logo"></div>
+      <hr/>
+      <p id="product-string"></p>
+      <h3>LOOLWSD</h3>
+      <div id="loolwsd-version"></div>
+      <div id="loolwsd-id"></div>
+      <h3>LOKit</h3>
+      <div id="lokit-version"></div>
+      <div id="os-info" style="text-align:center"></div>
+      <div id="slow-proxy"></div>
+      <p id="log-level-state">
+      <p id="trace-event-state">
+      <p>Copyright © 2021, Collabora Productivity Limited.</p>
+    </div>
+
+    <script>
+window.host = '%HOST%';
+      window.serviceRoot = '%SERVICE_ROOT%';
+      window.hexifyUrl = %HEXIFY_URL%;
+      window.versionPath = '%VERSION%';
+      window.accessToken = '%ACCESS_TOKEN%';
+      window.accessTokenTTL = '%ACCESS_TOKEN_TTL%';
+      window.accessHeader = '%ACCESS_HEADER%';
+      window.postMessageOriginExt = '%POSTMESSAGE_ORIGIN%';
+      window.loleafletLogging = '%LOLEAFLET_LOGGING%';
+      window.enableWelcomeMessage = %ENABLE_WELCOME_MSG%;
+      window.enableWelcomeMessageButton = %ENABLE_WELCOME_MSG_BTN%;
+      window.userInterfaceMode = '%USER_INTERFACE_MODE%';
+      window.enableMacrosExecution = '%ENABLE_MACROS_EXECUTION%';
+      window.outOfFocusTimeoutSecs = %OUT_OF_FOCUS_TIMEOUT_SECS%;
+      window.idleTimeoutSecs = %IDLE_TIMEOUT_SECS%;
+      window.reuseCookies = '%REUSE_COOKIES%';
+      window.protocolDebug = %PROTOCOL_DEBUG%;
+      window.frameAncestors = '%FRAME_ANCESTORS%';
+      window.socketProxy = %SOCKET_PROXY%;
+      window.tileSize = 256;
+      window.uiDefaults = %UI_DEFAULTS%;
+window.app={definitions:{},dpiScale:1,roundedDpiScale:1,twipsToPixels:0,pixelsToTwips:0,file:{editComment:false,readOnly:true,size:{pixels:[0,0],twips:[0,0]},viewedRectangle:[0,0,0,0],fileBasedView:false,calc:{cellCursor:{address:[0,0],rectangle:{pixels:[0,0,0,0],twips:[0,0,0,0]},visible:false}}},view:{commentHasFocus:false,size:{pixels:[0,0]}},tile:{size:{pixels:[0,0],twips:[0,0]}},socket:null};(function(global){global.getParameterByName=function(name){name=name.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var regex=new RegExp("[\\?&]"+name+"=([^&#]*)");var results=regex.exec(location.search);return results===null?"":results[1].replace(/\+/g," ")};var ua=navigator.userAgent.toLowerCase(),uv=navigator.vendor.toLowerCase(),doc=document.documentElement,ie="ActiveXObject"in window,webkit=ua.indexOf("webkit")!==-1,phantomjs=ua.indexOf("phantom")!==-1,android23=ua.search("android [23]")!==-1,chrome=ua.indexOf("chrome")!==-1,gecko=ua.indexOf("gecko")!==-1&&!webkit&&!window.opera&&!ie,safari=!chrome&&(ua.indexOf("safari")!==-1||uv.indexOf("apple")==0),win=navigator.platform.indexOf("Win")===0,mobile=typeof orientation!=="undefined"||ua.indexOf("mobile")!==-1,cypressTest=ua.indexOf("cypress")!==-1,msPointer=!window.PointerEvent&&window.MSPointerEvent,pointer=window.PointerEvent&&navigator.pointerEnabled&&navigator.maxTouchPoints||msPointer,ie3d=ie&&"transition"in doc.style,webkit3d="WebKitCSSMatrix"in window&&"m11"in new window.WebKitCSSMatrix&&!android23,gecko3d="MozPerspective"in doc.style,opera12="OTransition"in doc.style;var chromebook=window.ThisIsTheAndroidApp&&window.LOOLMessageHandler.isChromeOS();var touch=!window.L_NO_TOUCH&&(pointer||"ontouchstart"in window||window.DocumentTouch&&document instanceof window.DocumentTouch)&&!chromebook;var isInternetExplorer=navigator.userAgent.toLowerCase().indexOf("msie")!=-1||navigator.userAgent.toLowerCase().indexOf("trident")!=-1;global.L={};global.L.Params={closeButtonEnabled:global.getParameterByName("closebutton"),revHistoryEnabled:global.getParameterByName("revisionhistory")};global.L.Browser={ie:ie,ielt9:ie&&!document.addEventListener,edge:"msLaunchUri"in navigator&&!("documentMode"in document),webkit:webkit,gecko:gecko,android:ua.indexOf("android")!==-1,android23:android23,chrome:chrome,safari:safari,win:win,ie3d:ie3d,isInternetExplorer:isInternetExplorer,webkit3d:webkit3d,gecko3d:gecko3d,opera12:opera12,any3d:!window.L_DISABLE_3D&&(ie3d||webkit3d||gecko3d)&&!opera12&&!phantomjs,mobile:mobile,mobileWebkit:mobile&&webkit,mobileWebkit3d:mobile&&webkit3d,mobileOpera:mobile&&window.opera,mobileGecko:mobile&&gecko,cypressTest:cypressTest,touch:!!touch,msPointer:!!msPointer,pointer:!!pointer,retina:(window.devicePixelRatio||window.screen.deviceXDPI/window.screen.logicalXDPI)>1};global.mode={isChromebook:function(){return chromebook},isMobile:function(){if(global.mode.isChromebook())return false;if(L.Browser.mobile&&L.Browser.cypressTest){return true}return L.Browser.mobile&&(screen.width<768||screen.height<768)},isTablet:function(){if(global.mode.isChromebook())return false;return L.Browser.mobile&&!window.mode.isMobile()},isDesktop:function(){if(global.mode.isChromebook())return true;return!L.Browser.mobile},getDeviceFormFactor:function(){if(window.mode.isMobile())return"mobile";else if(window.mode.isTablet())return"tablet";else if(window.mode.isDesktop())return"desktop";else return null}};global.deviceFormFactor=window.mode.getDeviceFormFactor();document.addEventListener("contextmenu",function(e){if(e.preventDefault){e.preventDefault()}else{e.returnValue=false}},false);global.fakeWebSocketCounter=0;global.FakeWebSocket=function(){this.binaryType="arraybuffer";this.bufferedAmount=0;this.extensions="";this.protocol="";this.readyState=1;this.id=window.fakeWebSocketCounter++;this.sendCounter=0;this.onclose=function(){};this.onerror=function(){};this.onmessage=function(){};this.onopen=function(){};this.close=function(){}};global.FakeWebSocket.prototype.send=function(data){this.sendCounter++;window.postMobileMessage(data)};global.proxySocketCounter=0;global.ProxySocket=function(uri){var that=this;this.uri=uri;this.binaryType="arraybuffer";this.bufferedAmount=0;this.extensions="";this.unloading=false;this.protocol="";this.connected=true;this.readyState=0;this.sessionId="open";this.id=window.proxySocketCounter++;this.sendCounter=0;this.msgInflight=0;this.openInflight=0;this.inSerial=0;this.outSerial=0;this.minPollMs=25;this.maxPollMs=500;this.curPollMs=this.minPollMs;this.minIdlePollsToThrottle=3;this.throttleFactor=1.15;this.lastDataTimestamp=performance.now();this.onclose=function(){};this.onerror=function(){};this.onmessage=function(){};if(!!window.MSInputMethodContext&&!!document.documentMode){this.decoder={};this.decoder.decode=function(bytes){var decoded="";var code=0;for(var i=0;i<bytes.length;){var b=bytes[i];var seqLen=1;if(b<=127)code=b&255;else if(b<=223){code=b&31;seqLen=2}else if(b<=239){code=b&15;seqLen=3}else if(b<=247){code=b&7;seqLen=4}var left=bytes.length-i;if(left>=seqLen){for(var j=1;j<seqLen;++j)code=code<<6|bytes[i+j]&63}else{seqLen=left;code=65533}if(code<=65535)decoded+=String.fromCharCode(code);else decoded+=String.fromCharCode((code-65536>>10)+55296,(code-65536)%1024+56320);i+=seqLen}return decoded};this.doSlice=function(bytes,start,end){var data=new Uint8Array(end-start+1);for(var i=0;i<=end-start;++i)data[i]=bytes[start+i];return data}}else{this.decoder=new TextDecoder;this.doSlice=function(bytes,start,end){return bytes.slice(start,end)}}this.decode=function(bytes,start,end){return this.decoder.decode(this.doSlice(bytes,start,end))};this.parseIncomingArray=function(arr){for(var i=0;i<arr.length;++i){var left=arr.length-i;if(left<4){break}var type=String.fromCharCode(arr[i+0]);if(type!="T"&&type!="B"){console.debug("wrong data type: "+type);break}i++;if(arr[i]!==48&&arr[i+1]!==120){console.debug("missing hex preamble");break}i+=2;var numStr="";var start=i;while(arr[i]!=10)i++;numStr=this.decode(arr,start,i);var serial=parseInt(numStr,16);i++;if(arr[i]!==48&&arr[i+1]!==120){console.debug("missing hex preamble");break}i+=2;start=i;while(arr[i]!=10)i++;numStr=this.decode(arr,start,i);var size=parseInt(numStr,16);i++;var data;if(type=="T")data=this.decode(arr,i,i+size);else data=this.doSlice(arr,i,i+size);if(serial!==that.inSerial+1){console.debug("Error: serial mismatch "+serial+" vs. "+(that.inSerial+1))}that.inSerial=serial;this.onmessage({data:data});i+=size}};this.sendQueue="";this._signalErrorClose=function(){clearInterval(this.pollInterval);clearTimeout(this.delaySession);this.pollInterval=undefined;this.delaySession=undefined;if(that.readyState<3){this.onerror();this.onclose()}this.sessionId="open";this.inSerial=0;this.outSerial=0;this.msgInflight=0;this.openInflight=0;this.readyState=3};this._setPollInterval=function(intervalMs){clearInterval(this.pollInterval);if(this.readyState===1)this.pollInterval=setInterval(this.doSend,intervalMs)},this.doSend=function(){if(that.sessionId==="open"){if(that.readyState===3)console.debug("Error: sending on closed socket");return}if(that.msgInflight>=4){if(that.curPollMs<that.maxPollMs){that.curPollMs=Math.min(that.maxPollMs,that.curPollMs*that.throttleFactor)|0;console.debug("High latency connection - too much in-flight, throttling to "+that.curPollMs+" ms.");that._setPollInterval(that.curPollMs)}else if(performance.now()-that.lastDataTimestamp>30*1e3){console.debug("Close connection after no response for 30secs");that._signalErrorClose()}else console.debug("High latency connection - too much in-flight, pausing.");return}that._setPollInterval(that.maxPollMs);var req=new XMLHttpRequest;req.open("POST",that.getEndPoint("write"));req.responseType="arraybuffer";req.addEventListener("load",function(){if(this.status==200){var data=new Uint8Array(this.response);if(data.length){that.curPollMs=that.minPollMs;that._setPollInterval(that.curPollMs);that.lastDataTimestamp=performance.now();that.parseIncomingArray(data);return}}else{console.debug("proxy: error on incoming response "+this.status);that._signalErrorClose()}if(that.curPollMs<that.maxPollMs){var timeSinceLastDataMs=performance.now()-that.lastDataTimestamp|0;if(timeSinceLastDataMs>=that.minIdlePollsToThrottle*that.curPollMs){that.curPollMs=Math.min(that.maxPollMs,that.curPollMs*that.throttleFactor)|0}}that._setPollInterval(that.curPollMs)});req.addEventListener("loadend",function(){that.msgInflight--});req.send(that.sendQueue);that.sendQueue="";that.msgInflight++};this.getSessionId=function(){if(this.openInflight>0){console.debug("Waiting for session open");return}if(this.delaySession)return;if(global.lastCreatedProxySocket){var msSince=performance.now()-global.lastCreatedProxySocket;if(msSince<250){var delay=250-msSince;console.debug("Wait to re-try session creation for "+delay+"ms");this.curPollMs=delay;this.delaySession=setTimeout(function(){that.delaySession=undefined;that.getSessionId()},delay);return}}global.lastCreatedProxySocket=performance.now();var req=new XMLHttpRequest;req.open("POST",that.getEndPoint("open"));req.responseType="text";req.addEventListener("load",function(){console.debug("got session: "+this.responseText);if(this.status!==200||!this.responseText||this.responseText.indexOf("\n")>=0){console.debug("Error: failed to fetch session id! error: "+this.status);that._signalErrorClose()}else{that.sessionId=this.responseText;that.readyState=1;that.onopen();that._setPollInterval(that.curPollMs)}});req.addEventListener("loadend",function(){console.debug("Open completed state: "+that.readyState);that.openInflight--});req.send("");this.openInflight++};this.send=function(msg){var hadData=this.sendQueue.length>0;this.sendQueue=this.sendQueue.concat("B0x"+this.outSerial.toString(16)+"\n"+"0x"+msg.length.toString(16)+"\n"+msg+"\n");this.outSerial++;if(that.curPollMs>that.minPollMs||!hadData){if(that.msgInflight<=3){that.curPollMs=that.minPollMs;that._setPollInterval(that.curPollMs)}}};this.sendCloseMsg=function(beacon){var url=that.getEndPoint("close");if(!beacon){var req=new XMLHttpRequest;req.open("POST",url);req.send("")}else navigator.sendBeacon(url,"")};this.close=function(){var oldState=this.readyState;console.debug("proxy: close socket");this.readyState=3;this.onclose();clearInterval(this.pollInterval);clearTimeout(this.delaySession);this.pollInterval=undefined;if(oldState===1)this.sendCloseMsg(this.unloading);this.sessionId="open"};this.setUnloading=function(){this.unloading=true};this.getEndPoint=function(command){var base=this.uri;return base+"/"+this.sessionId+"/"+command+"/"+this.outSerial};console.debug("proxy: new socket "+this.id+" "+this.uri);this.getSessionId()};if(global.socketProxy){window.addEventListener("load",function(){var replaceUrls=function(rules,replaceBase){if(!rules)return;for(var r=0;r<rules.length;++r){if(rules[r]&&rules[r].type!=1){replaceUrls(rules[r].cssRules||rules[r].rules,replaceBase);continue}if(!rules[r]||!rules[r].style)continue;var img=rules[r].style.backgroundImage;if(img===""||img===undefined)continue;if(img.startsWith('url("images/')){rules[r].style.backgroundImage=img.replace('url("images/',replaceBase)}}};var sheets=document.styleSheets;for(var i=0;i<sheets.length;++i){var relBases=sheets[i].href.split("/");relBases.pop();var replaceBase='url("'+relBases.join("/")+"/images/";var rules;try{rules=sheets[i].cssRules||sheets[i].rules}catch(err){console.log("Missing CSS from "+sheets[i].href);continue}replaceUrls(rules,replaceBase)}},false)}global.createWebSocket=function(uri){if(global.socketProxy){window.socketProxy=true;return new global.ProxySocket(uri)}else{return new WebSocket(uri)}};console.log2=console.log;if(global.loleafletLogging!=="true"){var methods=["warn","info","debug","trace","log","assert","time","timeEnd"];for(var i=0;i<methods.length;i++){console[methods[i]]=function(){}}}else{window.onerror=function(msg,src,row,col,err){var data={userAgent:navigator.userAgent.toLowerCase(),vendor:navigator.vendor.toLowerCase(),message:msg,source:src,line:row,column:col};var desc=err?err.message||{}:{},stack=err?err.stack||{}:{};var log="jserror "+JSON.stringify(data,null,2)+"\n"+desc+"\n"+stack+"\n";if(window.ThisIsAMobileApp){window.postMobileError(log)}else if(global.socket&&global.socket instanceof WebSocket&&global.socket.readyState===1){global.socket.send(log)}else if(global.socket&&global.L&&global.L.Socket&&global.socket instanceof global.L.Socket&&global.socket.connected()){global.socket.sendMessage(log)}else{var req=new XMLHttpRequest;var url=global.location.protocol+"//"+global.location.host+global.location.pathname.match(/.*\//)+"logging.html";req.open("POST",url,true);req.setRequestHeader("Content-type","application/json; charset=utf-8");req.send(log)}return false}}global._=function(string){if(window.ThisIsAMobileApp){if(window.LOCALIZATIONS&&window.LOCALIZATIONS.hasOwnProperty(string)){var result=window.LOCALIZATIONS[string];if(window.LANG==="de-CH"){result=result.replace(/ß/g,"ss")}return result}else{return string}}else{return string.toLocaleString()}};if(global.webserver===undefined){var protocol=window.location.protocol==="file:"?"https:":window.location.protocol;global.webserver=global.host.replace(/^(ws|wss):/i,protocol);global.webserver=global.webserver.replace(/\/*$/,"")}var docParams,wopiParams;var filePath=global.getParameterByName("file_path");global.wopiSrc=global.getParameterByName("WOPISrc");if(global.wopiSrc!=""){global.docURL=decodeURIComponent(global.wopiSrc);if(global.accessToken!==""){wopiParams={access_token:global.accessToken,access_token_ttl:global.accessTokenTTL}}else if(global.accessHeader!==""){wopiParams={access_header:global.accessHeader}}if(global.reuseCookies!==""){if(wopiParams){wopiParams["reuse_cookies"]=global.reuseCookies}else{wopiParams={reuse_cookies:global.reuseCookies}}}if(wopiParams){docParams=Object.keys(wopiParams).map(function(key){return encodeURIComponent(key)+"="+encodeURIComponent(wopiParams[key])}).join("&")}}else{global.docURL=filePath}global.makeWsUrl=function(path){console.assert(global.host.startsWith("ws"),"host is not ws: "+global.host);return global.host+global.serviceRoot+path};global.makeDocAndWopiSrcUrl=function(root,docUrlParams,suffix,wopiSrcParam){var wopiSrc="";if(global.wopiSrc!=""){wopiSrc="?WOPISrc="+global.wopiSrc+"&compat=";if(wopiSrcParam&&wopiSrcParam.length>0)wopiSrc+="&"+wopiSrcParam}else if(wopiSrcParam&&wopiSrcParam.length>0){wopiSrc="?"+wopiSrcParam}suffix=suffix||"/ws";var encodedDocUrl=encodeURIComponent(docUrlParams)+suffix+wopiSrc;if(global.hexifyUrl)encodedDocUrl=global.hexEncode(encodedDocUrl);return root+encodedDocUrl+"/ws"};global.makeWsUrlWopiSrc=function(path,docUrlParams,suffix,wopiSrcParam){var websocketURI=global.makeWsUrl(path);return global.makeDocAndWopiSrcUrl(websocketURI,docUrlParams,suffix,wopiSrcParam)};global.makeHttpUrl=function(path){console.assert(global.webserver.startsWith("http"),"webserver is not http: "+global.webserver);return global.webserver+global.serviceRoot+path};global.makeHttpUrlWopiSrc=function(path,docUrlParams,suffix,wopiSrcParam){var httpURI=window.makeHttpUrl(path);return global.makeDocAndWopiSrcUrl(httpURI,docUrlParams,suffix,wopiSrcParam)};global.hexEncode=function(string){var bytes=(new TextEncoder).encode(string);var hex="0x";for(i=0;i<bytes.length;++i){hex+=bytes[i].toString(16)}return hex};global.hexDecode=function(hex){if(hex.startsWith("0x"))hex=hex.substr(2);var bytes=new Uint8Array(hex.length/2);for(i=0;i<bytes.length;i++){bytes[i]=parseInt(hex.substr(i*2,2),16)}return(new TextDecoder).decode(bytes)};if(window.ThisIsAMobileApp){global.socket=new global.FakeWebSocket;window.TheFakeWebSocket=global.socket}else{var docParamsPart=docParams?(global.docURL.indexOf("?")>=0?"&":"?")+docParams:"";var websocketURI=global.makeWsUrlWopiSrc("/lool/",global.docURL+docParamsPart);try{global.socket=global.createWebSocket(websocketURI)}catch(err){console.log(err)}}var lang=global.getParameterByName("lang");global.queueMsg=[];if(window.ThisIsAMobileApp)window.LANG=lang;if(global.socket&&global.socket.readyState!==3){global.socket.onopen=function(){if(global.socket.readyState===1){var ProtocolVersionNumber="0.1";var timestamp=global.getParameterByName("timestamp");var msg="load url="+encodeURIComponent(global.docURL);var now0=Date.now();var now1=performance.now();var now2=Date.now();global.socket.send("loolclient "+ProtocolVersionNumber+" "+(now0+now2)/2+" "+now1);if(window.ThisIsAMobileApp){msg+=" lang="+window.LANG}else{if(timestamp){msg+=" timestamp="+timestamp}if(lang){msg+=" lang="+lang}}if(window.deviceFormFactor){msg+=" deviceFormFactor="+window.deviceFormFactor}if(window.isLocalStorageAllowed){var spellOnline=window.localStorage.getItem("SpellOnline");if(spellOnline){msg+=" spellOnline="+spellOnline}}global.socket.send(msg)}};global.socket.onerror=function(event){console.log(event)};global.socket.onclose=function(event){console.log(event)};global.socket.onmessage=function(event){if(typeof global.socket._onMessage==="function"){global.socket._emptyQueue();global.socket._onMessage(event)}else{global.queueMsg.push(event.data)}};global.socket.binaryType="arraybuffer";if(window.ThisIsAMobileApp){window.postMobileMessage("HULLO");this.socket.onopen()}}})(window);
+
+
+
+
+// Dynamically load the appropriate *-mobile.css, *-tablet.css or *-desktop.css
+var link = document.createElement('link');
+link.setAttribute("rel", "stylesheet");
+link.setAttribute("type", "text/css");
+var brandingLink = document.createElement('link');
+brandingLink.setAttribute("rel", "stylesheet");
+brandingLink.setAttribute("type", "text/css");
+if (window.mode.isMobile()) {
+    link.setAttribute("href", '%SERVICE_ROOT%/loleaflet/%VERSION%/device-mobile.css');
+    brandingLink.setAttribute("href", '%SERVICE_ROOT%/loleaflet/%VERSION%/branding-mobile.css');
+} else if (window.mode.isTablet()) {
+    link.setAttribute("href", '%SERVICE_ROOT%/loleaflet/%VERSION%/device-tablet.css');
+    brandingLink.setAttribute("href", '%SERVICE_ROOT%/loleaflet/%VERSION%/branding-tablet.css');
+} else {
+    link.setAttribute("href", '%SERVICE_ROOT%/loleaflet/%VERSION%/device-desktop.css');
+    brandingLink.setAttribute("href", '%SERVICE_ROOT%/loleaflet/%VERSION%/branding-desktop.css?xuan');
+}
+document.getElementsByTagName("head")[0].appendChild(link);
+document.getElementsByTagName("head")[0].appendChild(brandingLink);
+</script>
+
+    <script src="%SERVICE_ROOT%/loleaflet/%VERSION%/bundle.js" defer></script>
+
+    <!--%BRANDING_JS%--> <!-- logo onclick handler -->
+    <!--%CSS_VARIABLES%-->
+</body></html>

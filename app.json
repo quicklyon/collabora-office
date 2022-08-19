@@ -1,6 +1,7 @@
 {
     "Name": "Collabora-Office",
-    "Version": "6.4.14.3",
+    "Version": "22.05.5.3.1",
+    "ClassicVersion": "6.4.14.3",
     "Home": "https://www.collaboraoffice.com/",
     "Maintainer": "zhouyueqiu zhouyueqiu@easycorp.ltd",
     "GitUrl": "https://github.com/CollaboraOnline/online",
