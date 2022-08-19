@@ -41,7 +41,9 @@ Collabora-Office官网：[https://www.collaboraoffice.com/](https://www.collabor
 ## 三、获取镜像
 
 <!-- 这里是应用的【Tag】信息，通过命令维护，详情参考：https://github.com/quicklyon/template-toolkit -->
-- [6.4.14.3-20220818](https://github.com/quicklyon/collabora-office/releases/tag/v6.4.14.3-20220818)
+- [latest](https://github.com/quicklyon/collabora-office/releases/tag/v20220819)
+- [22.05.5.3.1-20220819](https://github.com/quicklyon/collabora-office/releases/tag/v20220819)
+- [6.4.14.3-20220819](https://github.com/quicklyon/collabora-office/releases/tag/v20220819)
 
 推荐从 [Docker Hub Registry](https://hub.docker.com/r/easysoft/collabora-office) 拉取我们构建好的官方Docker镜像。
 
