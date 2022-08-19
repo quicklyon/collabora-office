@@ -1,0 +1,16 @@
+{
+    "Name": "Collabora-Office",
+    "Version": "6.4.14.3",
+    "Home": "https://www.collaboraoffice.com/",
+    "Maintainer": "zhouyueqiu zhouyueqiu@easycorp.ltd",
+    "GitUrl": "https://github.com/CollaboraOnline/online",
+    "DockerfileUrl": "https://github.com/quicklyon/collabora-office-docker",
+    "InstallDocUrl": "https://www.qucheng.com/app-install/install-collabora-office-<number>.html",
+    "Docker": {
+        "Name": "collabora-office",
+        "OS": "ubuntu 18.04",
+        "ImageOS": "easysoft/debian:11",
+        "Repo": "https://hub.docker.com/r/easysoft/collabora-office",
+        "TagUrl": "https://hub.docker.com/r/easysoft/collabora-office/tags/"
+    }
+}

@@ -1,0 +1,57 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - '3307:3306'
+    volumes:
+      - 'db:/var/lib/mysql'
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass4Zentao
+      - MYSQL_DATABASE=zentao
+    networks:
+      - net
+
+  collabora-office:
+    image: hub.qucheng.com/app/collabora-office:${TAG:-latest}
+    container_name: collabora-office
+    ports:
+      - '9980:9980'
+    networks:
+      - net
+
+# zentao service
+  zentao:
+    image: hub.qucheng.com/app/quickon-zentao:max3.5-20220818
+    container_name: zentao
+    ports:
+      - '8080:80'
+    volumes:
+      - 'data:/data'
+    depends_on:
+      - mysql
+      - collabora-office
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=pass4Zentao
+      - MYSQL_DB=zentao
+      - EASYSOFT_DEBUG=true
+      - DEBUG=1
+      - IS_CONTAINER=true
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
+
+# persistence
+volumes:
+  db:
+    driver: local
+  data:
+    driver: local
