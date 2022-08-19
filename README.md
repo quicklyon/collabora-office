@@ -38,12 +38,12 @@ Collabora-Office官网：[https://www.collaboraoffice.com/](https://www.collabor
 
 由于版本比较多,这里只列出最新的5个版本,更详细的版本列表请参考:[可用版本列表](https://hub.docker.com/r/easysoft/collabora-office/tags/)
 
-## 三、获取镜像
-
 <!-- 这里是应用的【Tag】信息，通过命令维护，详情参考：https://github.com/quicklyon/template-toolkit -->
 - [latest](https://github.com/quicklyon/collabora-office/releases/tag/v20220819)
 - [22.05.5.3.1-20220819](https://github.com/quicklyon/collabora-office/releases/tag/v20220819)
 - [6.4.14.3-20220819](https://github.com/quicklyon/collabora-office/releases/tag/v20220819)
+
+## 三、获取镜像
 
 推荐从 [Docker Hub Registry](https://hub.docker.com/r/easysoft/collabora-office) 拉取我们构建好的官方Docker镜像。
 
