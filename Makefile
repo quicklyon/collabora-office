@@ -43,8 +43,14 @@ push-sync-tcr: push-public ## 同步到腾讯镜像仓库
 run: ## 运行
 	export TAG=$(TAG) ;docker-compose -f docker-compose.yml up -d
 
-smoke-test: ## 冒烟测试
+run-classic: ## 运行经典版
+	export TAG=$(CLASSIC_TAG) ;docker-compose -f docker-compose.yml up -d
+
+smoke-test: ## 冒烟测试新版
 	hack/make-rules/smoke-test.sh "collabora-office" "run"
+
+smoke-test-classic: ## 冒烟测试经典版
+	hack/make-rules/smoke-test.sh "collabora-office" "run-classic"
 
 ps: ## 运行状态
 	export TAG=$(TAG) ;docker-compose -f docker-compose.yml ps
