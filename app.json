@@ -6,7 +6,7 @@
     "Maintainer": "zhouyueqiu zhouyueqiu@easycorp.ltd",
     "GitUrl": "https://github.com/CollaboraOnline/online",
     "DockerfileUrl": "https://github.com/quicklyon/collabora-office-docker",
-    "InstallDocUrl": "https://www.qucheng.com/app-install/install-collabora-office-<number>.html",
+    "InstallDocUrl": "https://www.qucheng.com/app-install/install-collabora-office-145.html",
     "Docker": {
         "Name": "collabora-office",
         "OS": "ubuntu 18.04",

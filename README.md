@@ -10,7 +10,7 @@
 
 ## 快速参考
 
-- 通过 [渠成软件百宝箱](https://www.qucheng.com/app-install/install-collabora-office-<number>.html) 一键安装 **Collabora-Office**
+- 通过 [渠成软件百宝箱](https://www.qucheng.com/app-install/install-collabora-office-145.html) 一键安装 **Collabora-Office**
 - [Dockerfile 源码](https://github.com/quicklyon/collabora-office-docker)
 - [Collabora-Office 源码](https://github.com/CollaboraOnline/online)
 - [Collabora-Office 官网](https://www.collaboraoffice.com/)
